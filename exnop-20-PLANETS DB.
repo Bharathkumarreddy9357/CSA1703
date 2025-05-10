@@ -1,0 +1,30 @@
+% --- Planet(Name, DistanceFromSun in million km, Diameter in km) ---
+planet(mercury, 57.9, 4879).
+planet(venus, 108.2, 12104).
+planet(earth, 149.6, 12742).
+planet(mars, 227.9, 6779).
+planet(jupiter, 778.3, 139820).
+planet(saturn, 1427.0, 116460).
+planet(uranus, 2871.0, 50724).
+planet(neptune, 4497.1, 49244).
+
+% --- Moon(Planet, MoonName) ---
+moon(earth, moon).
+moon(mars, phobos).
+moon(mars, deimos).
+moon(jupiter, io).
+moon(jupiter, europa).
+moon(jupiter, ganymede).
+moon(jupiter, callisto).
+moon(saturn, titan).
+moon(saturn, enceladus).
+
+% --- Orbits(Planet, StarName) ---
+orbits(mercury, sun).
+orbits(venus, sun).
+orbits(earth, sun).
+orbits(mars, sun).
+orbits(jupiter, sun).
+orbits(saturn, sun).
+orbits(uranus, sun).
+orbits(neptune, sun).
