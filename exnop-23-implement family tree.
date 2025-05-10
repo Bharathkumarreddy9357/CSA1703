@@ -1,0 +1,17 @@
+?- father(john, mike).
+% Output: true.
+
+?- mother(susan, lisa).
+% Output: true.
+
+?- sibling(mike, lisa).
+% Output: true.
+
+?- grandfather(john, david).
+% Output: true.
+
+?- ancestor(john, emma).
+% Output: true.
+
+?- child(tom, lisa).
+% Output: true.
