@@ -1,0 +1,16 @@
+% --- Student(Name, ID) ---
+student(bharath, 192372258).
+student(alice, 192372259).
+student(john, 192372260).
+
+% --- Teaches(Teacher, SubjectCode) ---
+teaches(prof_smith, cs101).
+teaches(prof_jones, math204).
+teaches(prof_clark, phy301).
+
+% --- Enrolled(StudentName, SubjectCode) ---
+enrolled(bharath, cs101).
+enrolled(bharath, math204).
+enrolled(alice, phy301).
+enrolled(john, cs101).
+enrolled(john, math204).
