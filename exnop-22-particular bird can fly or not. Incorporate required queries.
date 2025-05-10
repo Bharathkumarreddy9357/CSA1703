@@ -1,0 +1,27 @@
+% Author: bharath
+% ID: 192372258
+% Description: Prolog program to determine if a bird can fly
+
+% Facts: bird(Name), and can_fly(Name)
+bird(sparrow).
+bird(penguin).
+bird(eagle).
+bird(ostrich).
+bird(parrot).
+bird(kiwi).
+
+% Birds that can fly
+can_fly(sparrow).
+can_fly(eagle).
+can_fly(parrot).
+
+% Rule: A bird can fly if it is listed in can_fly/1
+flies(Bird) :-
+    bird(Bird),
+    can_fly(Bird),
+    write(Bird), write(' can fly.'), nl.
+
+flies(Bird) :-
+    bird(Bird),
+    \+ can_fly(Bird),
+    write(Bird), write(' cannot fly.'), nl.
