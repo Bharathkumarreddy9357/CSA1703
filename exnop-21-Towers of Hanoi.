@@ -1,0 +1,18 @@
+% --- Main predicate to solve Towers of Hanoi ---
+% hanoi(N, Source, Target, Auxiliary)
+hanoi(0, _, _, _) :- !.
+hanoi(N, Source, Target, Auxiliary) :-
+    N > 0,
+    M is N - 1,
+    hanoi(M, Source, Auxiliary, Target),
+    move(Source, Target),
+    hanoi(M, Auxiliary, Target, Source).
+
+% --- Move Predicate (prints a move step) ---
+move(From, To) :-
+    format('Move disk from ~w to ~w~n', [From, To]).
+
+% --- Custom entry point using your name ---
+bharath912372258 :-
+    NumDisks = 3,  % You can change the number of disks here
+    hanoi(NumDisks, left, right, center).
