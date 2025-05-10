@@ -1,0 +1,18 @@
+% Prolog Database: Name and Date of Birth
+
+% Facts: name(Name), dob(Name, DateOfBirth)
+% DateOfBirth format: date(Year, Month, Day)
+
+% Example entries
+name(alex).
+dob(alex, date(1995, 7, 23)).
+
+name(sam).
+dob(sam, date(1990, 12, 5)).
+
+name(taylor).
+dob(taylor, date(1988, 3, 17)).
+
+% Query Examples:
+% ?- dob(alex, DOB).
+% ?- name(Name), dob(Name, date(1990, 12, 5)).
