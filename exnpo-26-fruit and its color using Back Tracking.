@@ -1,0 +1,28 @@
+% Author: bharath192372258
+% Description: Prolog Program to find fruit and its color using backtracking
+
+% Facts: fruit(Name, Color)
+fruit(apple, red).
+fruit(banana, yellow).
+fruit(grape, green).
+fruit(grape, purple).
+fruit(orange, orange).
+fruit(blueberry, blue).
+fruit(lemon, yellow).
+fruit(kiwi, green).
+fruit(cherry, red).
+fruit(blackberry, black).
+
+% Rule: Find all fruits of a given color using backtracking
+find_fruits_by_color(Color) :-
+    fruit(Fruit, Color),
+    format('~w is ~w in color.~n', [Fruit, Color]),
+    fail.
+find_fruits_by_color(_).  % succeed after all matches
+
+% Rule: Find all colors of a given fruit using backtracking
+find_colors_by_fruit(Fruit) :-
+    fruit(Fruit, Color),
+    format('~w comes in ~w color.~n', [Fruit, Color]),
+    fail.
+find_colors_by_fruit(_).  % succeed after all matches
