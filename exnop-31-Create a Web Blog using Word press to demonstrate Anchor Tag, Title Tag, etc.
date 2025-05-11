@@ -1,0 +1,19 @@
+<h1 title="This is the title tag for H1">Understanding Basic HTML Tags</h1>
+
+<p>
+  The <strong>anchor tag</strong> is used to create links. Here's an example:
+  <a href="https://www.wikipedia.org" title="Go to Wikipedia">Visit Wikipedia</a>
+</p>
+
+<p>
+  Hover over the heading above to see the use of the <strong>title attribute</strong>.
+</p>
+
+<p>
+  HTML tags like <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;br&gt;</code>, and <code>&lt;a&gt;</code> make content structured and interactive.
+</p>
+
+<p>
+  Here's a link that opens in a new tab using the <code>target="_blank"</code> attribute:<br>
+  <a href="https://www.example.com" target="_blank" title="External link to Example.com">Open Example.com</a>
+</p>
