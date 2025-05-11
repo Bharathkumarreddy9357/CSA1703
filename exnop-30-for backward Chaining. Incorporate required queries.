@@ -1,0 +1,47 @@
+% Backward Chaining Example
+% Created by bharath 192372258
+
+% Facts (known information)
+fact(has_symptom(fever)).
+fact(has_symptom(cough)).
+fact(has_symptom(sore_throat)).
+
+% Rules (inferences based on symptoms)
+rule(flu, [has_symptom(fever), has_symptom(cough), has_symptom(sore_throat)]).
+rule(cold, [has_symptom(cough), has_symptom(runny_nose), has_symptom(sneezing)]).
+rule(malaria, [has_symptom(fever), has_symptom(chills), has_symptom(headache)]).
+rule(covid19, [has_symptom(fever), has_symptom(cough), has_symptom(loss_of_taste), has_symptom(shortness_of_breath)]).
+
+% Backward Chaining Function: Try to prove a disease based on known facts
+backward_chain(Disease) :-
+    format('Trying to prove: ~w~n', [Disease]),
+    prove_disease(Disease).
+
+% Prove Disease by checking its rules
+prove_disease(Disease) :-
+    rule(Disease, Symptoms),  % Find the rule for the disease
+    prove_all(Symptoms).      % Check if all symptoms are true
+
+% Check all symptoms of a disease
+prove_all([]).  % If there are no more symptoms to check, succeed
+prove_all([H|T]) :-
+    fact(H),          % If the symptom is a known fact, it's proven
+    prove_all(T).     % Recursively check the rest of the symptoms
+
+prove_all([H|T]) :-
+    \+ fact(H),       % If the symptom is not a known fact
+    ask_user(H),      % Ask the user for the symptom
+    prove_all(T).     % Continue with the rest of the symptoms
+
+% Ask user whether a symptom is true (yes or no)
+ask_user(Symptom) :-
+    format('Do you have ~w? (yes/no): ', [Symptom]),
+    read(Response),
+    (Response == yes -> assertz(fact(Symptom)) ; fail).
+
+% Start backward chaining
+start_backward_chaining :-
+    format('Starting backward chaining...~n'),
+    backward_chain(flu);      % Example query: Try to prove the flu
+    backward_chain(covid19).  % You can also query other diseases here
+
