@@ -1,0 +1,60 @@
+% Author: bharath192372258
+% Prolog Program to Solve the Monkey and Banana Problem
+
+% State is represented as:
+% state(MonkeyPosition, MonkeyStatus, BoxPosition)
+
+% MonkeyPosition and BoxPosition can be: corner | middle | under_banana
+% MonkeyStatus can be: on_floor | on_box
+
+% Goal: Monkey has banana -> monkey is at under_banana and on_box
+
+% Initial state
+initial_state(state(corner, on_floor, corner)).
+
+% Goal state
+goal_state(state(under_banana, on_box, under_banana)).
+
+% Possible actions:
+
+% Monkey walks to a new position
+move(state(P1, on_floor, B), walk(P2), state(P2, on_floor, B)) :-
+    P1 \= P2.
+
+% Monkey pushes the box to a new position (only when on floor and at the same position)
+move(state(P, on_floor, P), push(P2), state(P2, on_floor, P2)) :-
+    P \= P2.
+
+% Monkey climbs onto the box (only when at the same position as box and on floor)
+move(state(P, on_floor, P), climb, state(P, on_box, P)).
+
+% Monkey climbs down from the box
+move(state(P, on_box, P), climb_down, state(P, on_floor, P)).
+
+% Monkey grabs the banana (only when at under_banana and on_box)
+move(state(under_banana, on_box, under_banana), grab, got_banana).
+
+% Plan: find a sequence of moves from initial state to goal
+
+solve :-
+    initial_state(InitialState),
+    goal_state(Goal),
+    plan(InitialState, Goal, [], Moves),
+    write('Plan to get the banana:'), nl,
+    print_moves(Moves).
+
+% Recursive planning predicate
+plan(State, State, Moves, Moves).
+plan(State1, Goal, Visited, Moves) :-
+    move(State1, Action, State2),
+    \+ member(State2, Visited),
+    plan(State2, Goal, [Action|Visited], Moves).
+
+% Print the list of moves
+print_moves([]).
+print_moves([H|T]) :-
+    print_moves(T),
+    write('- '), write(H), nl.
+
+% Example Query:
+% ?- solve.
