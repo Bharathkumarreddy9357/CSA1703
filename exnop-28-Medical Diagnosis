@@ -1,0 +1,60 @@
+% Medical Diagnosis System
+% Created by bharath .192372258
+
+% Define symptoms for each disease
+disease(flu) :-
+    symptom(fever),
+    symptom(cough),
+    symptom(sore_throat),
+    symptom(body_ache).
+
+disease(cold) :-
+    symptom(cough),
+    symptom(sneezing),
+    symptom(runny_nose).
+
+disease(malaria) :-
+    symptom(fever),
+    symptom(chills),
+    symptom(sweating),
+    symptom(headache).
+
+disease(covid19) :-
+    symptom(fever),
+    symptom(cough),
+    symptom(loss_of_taste),
+    symptom(shortness_of_breath).
+
+disease(typhoid) :-
+    symptom(fever),
+    symptom(abdominal_pain),
+    symptom(loss_of_appetite),
+    symptom(weakness).
+
+% Ask user for symptoms
+ask_symptom(S) :-
+    format('Do you have ~w? (yes/no): ', [S]),
+    read(Response),
+    (Response == yes -> assertz(symptom(S)) ; fail).
+
+% Start diagnosis
+start_diagnosis :-
+    retractall(symptom(_)),  % Clear previous session
+    ask_symptom(fever),
+    ask_symptom(cough),
+    ask_symptom(sore_throat),
+    ask_symptom(body_ache),
+    ask_symptom(sneezing),
+    ask_symptom(runny_nose),
+    ask_symptom(chills),
+    ask_symptom(sweating),
+    ask_symptom(headache),
+    ask_symptom(loss_of_taste),
+    ask_symptom(shortness_of_breath),
+    ask_symptom(abdominal_pain),
+    ask_symptom(loss_of_appetite),
+    ask_symptom(weakness),
+    (disease(D) -> format('Based on your symptoms, you may have ~w.~n', [D]) ;
+                   write('Diagnosis inconclusive. Please consult a doctor.') ).
+
+% To run: ?- start_diagnosis.
