@@ -1,0 +1,26 @@
+% Program: bharath192372258.pl
+% Author: bharath192372258
+% Purpose: Count number of vowels in a given input string
+
+% is_vowel/1 - succeeds if the character is a vowel
+is_vowel(Char) :-
+    member(Char, ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']).
+
+% count_vowels/2 - counts vowels in a list of characters
+count_vowels([], 0).
+count_vowels([H|T], Count) :-
+    is_vowel(H),
+    count_vowels(T, Rest),
+    Count is Rest + 1.
+count_vowels([H|T], Count) :-
+    \+ is_vowel(H),
+    count_vowels(T, Count).
+
+% string_to_char_list/2 - converts string to list of characters
+string_to_char_list(String, CharList) :-
+    atom_chars(String, CharList).
+
+% count_vowels_in_string/2 - counts vowels in a string
+count_vowels_in_string(String, Count) :-
+    string_to_char_list(String, CharList),
+    count_vowels(CharList, Count).
