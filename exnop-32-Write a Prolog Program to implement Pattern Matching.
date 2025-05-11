@@ -1,0 +1,23 @@
+% Author: bharath192372258
+% Prolog Program to Implement Pattern Matching
+
+% Basic pattern matching: matching a pattern with a given term
+match_pattern(Term, Term) :- !.  % If both are identical, it matches
+
+% Match a pattern with a list
+match_pattern([], []).  % Empty list matches an empty list
+match_pattern([H1 | T1], [H2 | T2]) :-  % Recursively match head and tail
+    match_pattern(H1, H2),
+    match_pattern(T1, T2).
+
+% Match a pattern with variables
+match_pattern(Variable, Term) :- 
+    var(Variable),  % If the first term is a variable, unify it with the second term
+    Variable = Term.
+
+% Sample patterns
+% Query Examples:
+% ?- match_pattern([a, b, c], [a, X, c]).     % Matching list with a variable (X)
+% ?- match_pattern(fruit(apple, red), fruit(apple, red)).  % Exact matching
+% ?- match_pattern([1, 2, 3], [X, 2, Y]).     % Matching lists with variables
+% ?- match_pattern(X, apple).                 % Matching term with a variable
