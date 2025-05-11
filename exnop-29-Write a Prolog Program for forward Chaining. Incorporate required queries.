@@ -1,0 +1,41 @@
+% Forward Chaining Example
+% Created by bharath192372258
+
+% Facts (known information)
+fact(has_symptom(fever)).
+fact(has_symptom(cough)).
+fact(has_symptom(sore_throat)).
+
+% Rules (inferences based on symptoms)
+rule(flu, [has_symptom(fever), has_symptom(cough), has_symptom(sore_throat)]).
+rule(cold, [has_symptom(cough), has_symptom(runny_nose), has_symptom(sneezing)]).
+rule(malaria, [has_symptom(fever), has_symptom(chills), has_symptom(headache)]).
+rule(covid19, [has_symptom(fever), has_symptom(cough), has_symptom(loss_of_taste), has_symptom(shortness_of_breath)]).
+
+% Forward Chaining Function
+forward_chain :-
+    % Start with known facts and try to deduce conclusions
+    apply_rules.
+
+% Apply Rules and Deduce New Facts
+apply_rules :-
+    rule(Disease, Symptoms),
+    forall(member(Symptom, Symptoms), fact(Symptom)),
+    assertz(fact(has_disease(Disease))),
+    format('You may have: ~w~n', [Disease]),
+    fail.  % Keep applying rules until no more can be applied
+
+apply_rules.  % End when no more rules can be applied
+
+% Check all known facts
+check_facts :-
+    fact(Fact),
+    format('Fact: ~w~n', [Fact]),
+    fail.
+
+check_facts.
+
+% Start the forward chaining process
+start_forward_chaining :-
+    format('Starting forward chaining...~n'),
+    forward_chain.
