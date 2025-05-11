@@ -1,0 +1,26 @@
+% Author: bharath192372258
+% Dieting System Based on Disease
+
+% Facts: disease and corresponding diet suggestions
+diet(diabetes, ['Oats', 'Whole grains', 'Leafy greens', 'Nuts', 'Fish']).
+diet(hypertension, ['Low sodium foods', 'Bananas', 'Leafy vegetables', 'Berries', 'Oats']).
+diet(obesity, ['Fruits', 'Vegetables', 'Lean protein', 'Whole grains', 'Legumes']).
+diet(cardiac, ['Low-fat dairy', 'Whole grains', 'Leafy greens', 'Nuts', 'Berries']).
+diet(anemia, ['Red meat', 'Spinach', 'Iron-rich cereals', 'Beans', 'Lentils']).
+diet(osteoporosis, ['Milk', 'Cheese', 'Yogurt', 'Kale', 'Almonds']).
+diet(asthma, ['Apples', 'Bananas', 'Spinach', 'Tomatoes', 'Vitamin C rich foods']).
+
+% Rule to suggest diet
+suggest_diet(Disease) :-
+    diet(Disease, DietList),
+    format('Recommended diet for ~w:~n', [Disease]),
+    print_diet(DietList).
+
+% Helper rule to print the list
+print_diet([]).
+print_diet([H|T]) :-
+    format('- ~w~n', [H]),
+    print_diet(T).
+
+% Example query:
+% ?- suggest_diet(diabetes).
